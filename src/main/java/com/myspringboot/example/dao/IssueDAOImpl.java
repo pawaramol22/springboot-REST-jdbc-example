@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class IssueDAOImpl implements JiraDAO<Issue >{
+public class IssueDAOImpl implements IssueDAO<Issue > {
 
     private static final Logger log = LoggerFactory.getLogger(IssueDAOImpl.class);
     private JdbcTemplate jdbcTemplate;
@@ -23,6 +23,7 @@ public class IssueDAOImpl implements JiraDAO<Issue >{
     RowMapper<Issue> rowMapper = (rs, rowNum) -> {
         Issue issue = new Issue();
         issue.setIssueKey(rs.getString("issueKey"));
+        issue.setProjectKey(rs.getString("projectKey"));
         issue.setIssueType(rs.getString("type"));
         issue.setDescription(rs.getString("description"));
         issue.setSummary(rs.getString("summary"));
@@ -45,14 +46,14 @@ public class IssueDAOImpl implements JiraDAO<Issue >{
                         rowCountSql, (rs, rowNum) -> rs.getInt(1)
                 );
 
-        String sql = "SELECT issueKey, type, summary, description, priority, assignee, reporter, state FROM Issue LIMIT " + pageable.getPageSize() + " OFFSET " + pageable.getOffset();
+        String sql = "SELECT issueKey, projectKey, type, summary, description, priority, assignee, reporter, state FROM Issue LIMIT " + pageable.getPageSize() + " OFFSET " + pageable.getOffset();
         List<Issue> issues = jdbcTemplate.query(sql, rowMapper);
         return new PageImpl<>(issues, pageable, total);
     }
 
     @Override
     public Optional<Issue> get(String issueKey) {
-        String sql = "SELECT issueKey, type, summary, description, priority, assignee, reporter, state FROM Issue where issueKey = ?";
+        String sql = "SELECT issueKey, projectKey, type, summary, description, priority, assignee, reporter, state FROM Issue where issueKey = ?";
         Issue issue = null;
 
         try{

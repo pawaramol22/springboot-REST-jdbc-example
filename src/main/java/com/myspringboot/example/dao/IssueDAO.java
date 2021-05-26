@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
-public interface JiraDAO<T> {
+public interface IssueDAO<T> {
     Page<T> list(Pageable pageable);
 
     Optional<T> get(String issueKey);

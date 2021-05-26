@@ -7,9 +7,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Issue {
 
     @JsonIgnore
-    private long id;
+    private Long id;
     @JsonProperty("key")
     private String issueKey;
+    private String projectKey;
     private String summary;
     private String description;
     private String issueType;
@@ -21,8 +22,9 @@ public class Issue {
     public Issue() {
     }
 
-    public Issue(String issueKey, String summary, String description, String issueType, String priority, String state, String reporter, String assignee) {
+    public Issue(String issueKey, String projectKey, String summary, String description, String issueType, String priority, String state, String reporter, String assignee) {
         this.issueKey = issueKey;
+        this.projectKey = projectKey;
         this.summary = summary;
         this.description = description;
         this.issueType = issueType;
@@ -32,11 +34,11 @@ public class Issue {
         this.assignee = assignee;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,6 +48,14 @@ public class Issue {
 
     public void setIssueKey(String issueKey) {
         this.issueKey = issueKey;
+    }
+
+    public String getProjectKey() {
+        return projectKey;
+    }
+
+    public void setProjectKey(String projectKey) {
+        this.projectKey = projectKey;
     }
 
     public String getSummary() {
@@ -108,6 +118,7 @@ public class Issue {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Issue{");
         sb.append("issueKey='").append(issueKey).append('\'');
+        sb.append(", projectKey='").append(projectKey).append('\'');
         sb.append(", summary='").append(summary).append('\'');
         sb.append(", issueType='").append(issueType).append('\'');
         sb.append(", priority='").append(priority).append('\'');

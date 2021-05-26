@@ -1,6 +1,6 @@
 package com.myspringboot.example;
 
-import com.myspringboot.example.dao.JiraDAO;
+import com.myspringboot.example.dao.IssueDAO;
 import com.myspringboot.example.model.Issue;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,9 +12,9 @@ import org.springframework.data.domain.Pageable;
 @SpringBootApplication
 public class MySpringBootApplication {
 
-	private static JiraDAO dao;
+	private static IssueDAO dao;
 
-	public MySpringBootApplication(JiraDAO<Issue> dao) {
+	public MySpringBootApplication(IssueDAO<Issue> dao) {
 		this.dao = dao;
 	}
 
