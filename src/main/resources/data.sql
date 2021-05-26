@@ -1,0 +1,10 @@
+insert into issue(issueKey, summary, description, type, priority, state, reporter, assignee) values ('JIRA-1', 'First Issue', 'First description', 'Task', 'P1', 'New', 'bruce', 'clark');
+insert into issue(issueKey, summary, description, type, priority, state, reporter, assignee) values ('JIRA-2', 'Second Issue', 'Second description', 'Task', 'P2', 'Open', 'clark', 'bruce');
+insert into issue(issueKey, summary, description, type, priority, state, reporter, assignee) values ('JIRA-3', 'Third Issue', 'Third description', 'Task', 'P3', 'In Progress', 'bruce', 'harvey');
+insert into issue(issueKey, summary, description, type, priority, state, reporter, assignee) values ('JIRA-4', 'Fourth Issue', 'Fourth description', 'Task', 'P4', 'Done', 'bruce', 'clark');
+insert into issue(issueKey, summary, description, type, priority, state, reporter, assignee) values ('JIRA-5', 'Fifth Issue', 'Fifth description', 'Task', 'P5', 'New', 'harvey', 'clark');
+insert into issue(issueKey, summary, description, type, priority, state, reporter, assignee) values ('JIRA-6', 'Sixth Issue', 'Sixth description', 'Task', 'P1', 'Open', 'bruce', 'clark');
+insert into issue(issueKey, summary, description, type, priority, state, reporter, assignee) values ('JIRA-7', 'Seventh Issue', 'Seventh description', 'Task', 'P2', 'In Progress', 'bruce', 'gordon');
+insert into issue(issueKey, summary, description, type, priority, state, reporter, assignee) values ('JIRA-8', 'Eighth Issue', 'Eighth description', 'Task', 'P3', 'On Hold', 'bruce', 'celina');
+insert into issue(issueKey, summary, description, type, priority, state, reporter, assignee) values ('JIRA-9', 'Ninth Issue', 'Ninth description', 'Task', 'P4', 'Done', 'celina', 'bruce');
+insert into issue(issueKey, summary, description, type, priority, state, reporter, assignee) values ('JIRA-10', 'Tenth Issue', 'Tenth description', 'Task', 'P5', 'New', 'bruce', 'clark');
