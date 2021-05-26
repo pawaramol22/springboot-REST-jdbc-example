@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IssueDAO<T> {
-    Page<T> list(Pageable pageable);
+    Page<T> list(String projectKey, Pageable pageable);
 
     Optional<T> get(String issueKey);
 

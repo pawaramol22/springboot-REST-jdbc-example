@@ -22,7 +22,7 @@ public class MySpringBootApplication {
 		SpringApplication.run(MySpringBootApplication.class, args);
 
 		Pageable pageable = PageRequest.of(0, 5);
-		Page<Issue> page = dao.list(pageable);
+		Page<Issue> page = dao.list("JIRA", pageable);
 		page.getContent().forEach(System.out::println);
 
 		System.out.println(dao.get("JIRA-1"));

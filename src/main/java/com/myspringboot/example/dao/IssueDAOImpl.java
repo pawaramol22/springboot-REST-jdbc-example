@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class IssueDAOImpl implements IssueDAO<Issue > {
+public class IssueDAOImpl implements IssueDAO<Issue> {
 
     private static final Logger log = LoggerFactory.getLogger(IssueDAOImpl.class);
     private JdbcTemplate jdbcTemplate;
@@ -39,15 +39,15 @@ public class IssueDAOImpl implements IssueDAO<Issue > {
     }
 
     @Override
-    public Page<Issue> list(Pageable pageable) {
-        String rowCountSql = "SELECT count(1) AS row_count FROM Issue;";
+    public Page<Issue> list(String projectKey, Pageable pageable) {
+        String rowCountSql = "SELECT count(1) AS row_count FROM Issue where projectKey = ?";
         int total =
                 jdbcTemplate.queryForObject(
-                        rowCountSql, (rs, rowNum) -> rs.getInt(1)
+                        rowCountSql, new Object[]{projectKey}, (rs, rowNum) -> rs.getInt(1)
                 );
 
-        String sql = "SELECT issueKey, projectKey, type, summary, description, priority, assignee, reporter, state FROM Issue LIMIT " + pageable.getPageSize() + " OFFSET " + pageable.getOffset();
-        List<Issue> issues = jdbcTemplate.query(sql, rowMapper);
+        String sql = "SELECT issueKey, projectKey, type, summary, description, priority, assignee, reporter, state FROM Issue where projectKey = ? LIMIT " + pageable.getPageSize() + " OFFSET " + pageable.getOffset();
+        List<Issue> issues = jdbcTemplate.query(sql, new Object[]{projectKey}, rowMapper);
         return new PageImpl<>(issues, pageable, total);
     }
 
@@ -56,7 +56,7 @@ public class IssueDAOImpl implements IssueDAO<Issue > {
         String sql = "SELECT issueKey, projectKey, type, summary, description, priority, assignee, reporter, state FROM Issue where issueKey = ?";
         Issue issue = null;
 
-        try{
+        try {
             issue = jdbcTemplate.queryForObject(sql, new Object[]{issueKey}, rowMapper);
         } catch (DataAccessException ex) {
             log.error("Issue not found for key " + issueKey);
